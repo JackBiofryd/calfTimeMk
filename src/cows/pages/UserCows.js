@@ -69,8 +69,10 @@ export default function UserCows() {
 	};
 
 	const filterCows = e => {
-		const cowsFilteredByTag = cows.filter(cow =>
-			cow.tag.includes(e.target.value)
+		const cowsFilteredByTag = cows.filter(
+			cow =>
+				cow.tag.includes(e.target.value) ||
+				cow.name.includes(e.target.value)
 		);
 		setFilteredCows(cowsFilteredByTag);
 	};
@@ -90,7 +92,7 @@ export default function UserCows() {
 						<div className="btn-container my-2">
 							<input
 								type="text"
-								placeholder="Search By Tag..."
+								placeholder="Search By Tag or Name..."
 								className="input my-0-5 mx-1-5"
 								onChange={e => filterCows(e)}
 							/>

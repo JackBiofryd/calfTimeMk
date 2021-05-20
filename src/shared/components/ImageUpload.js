@@ -66,7 +66,10 @@ export default function ImageUpload(props) {
 						/>
 					</div>
 				)}
-				<Button type="button" onClick={pickImageHandler}>
+				<Button
+					type="button"
+					onClick={pickImageHandler}
+					extraClasses="border">
 					Upload Cow Image
 				</Button>
 			</div>

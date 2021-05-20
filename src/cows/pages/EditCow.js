@@ -39,7 +39,7 @@ export default function EditCow() {
 			},
 			motherTag: {
 				value: '',
-				isValid: false
+				isValid: true
 			},
 			fertDate: {
 				value: '',
@@ -60,6 +60,8 @@ export default function EditCow() {
 		},
 		false
 	);
+	const [showEditDetails, setShowEditDetails] = useState(false);
+	const [gender, setGender] = useState('male');
 	const auth = useContext(AuthContext);
 	const history = useHistory();
 	const { cowId } = useParams();
@@ -115,6 +117,7 @@ export default function EditCow() {
 					},
 					true
 				);
+				currentCow.gender && setGender(currentCow.gender);
 				setFoundCow(currentCow);
 			} catch (err) {
 				console.error(err);
@@ -136,7 +139,8 @@ export default function EditCow() {
 			mother: state.inputs.motherTag.value,
 			fertDate: toFormatedDate(state.inputs.fertDate.value),
 			antibioticDate: toFormatedDate(state.inputs.antibioticDate.value),
-			milk: state.inputs.milk.value || 0
+			milk: state.inputs.milk.value || 0,
+			gender
 		};
 
 		try {
@@ -158,6 +162,8 @@ export default function EditCow() {
 		}
 	};
 
+	const genderChangeHandler = e => setGender(e.target.value);
+
 	return (
 		<div>
 			<Navbar />
@@ -168,7 +174,7 @@ export default function EditCow() {
 			{foundCow && !isLoading && (
 				<div className="container p-1">
 					<form
-						className="form my-4 p-2"
+						className="form my-3 p-2"
 						onSubmit={formSubmitHandler}>
 						<h1 className="center L-heading mb-1">
 							Edit <span className="text-primary">Cow</span>
@@ -198,84 +204,124 @@ export default function EditCow() {
 							initialValue={state.inputs.name.value}
 							initialValid={state.inputs.name.isValid}
 						/>
-						<Input
-							type="text"
-							label="Mother Tag"
-							placeholder="Enter Tag of Mother..."
-							name="motherTag"
-							id="motherTag"
-							validators={[MIN_LENGTH(4), MAX_LENGTH(20)]}
-							errorText="Please Input A Valid Tag"
-							onInput={inputChangeHandler}
-							initialValue={state.inputs.motherTag.value}
-							initialValid={state.inputs.motherTag.isValid}
-						/>
-						<p className="center my-1">
-							The next fields can be left empty for automatic
-							data.
-						</p>
-						<Input
-							type="text"
-							label="Birth Date"
-							placeholder={`Enter Date (${getTodaysDate()})`}
-							name="birthDate"
-							id="birthDate"
-							errorText="Please Input A Valid Birth Date"
-							validators={[IS_DATE()]}
-							notRequired
-							onInput={inputChangeHandler}
-							initialValid
-							initialValue={state.inputs.birthDate.value}
-						/>
-						<Input
-							type="text"
-							label="Fertilization Date"
-							placeholder="Ente Date..."
-							name="fertDate"
-							id="fertDate"
-							validators={[IS_DATE()]}
-							notRequired
-							errorText="Please Input A Valid Date (Leave Empty For None)"
-							onInput={inputChangeHandler}
-							initialValid
-							initialValue={state.inputs.fertDate.value}
-						/>
-						<Input
-							type="text"
-							label="Antibiotic Date"
-							placeholder="Enter Date..."
-							name="antibioticDate"
-							id="antibioticDate"
-							validators={[IS_DATE()]}
-							notRequired
-							errorText="Please Input A Valid Date (Leave Empty For None)"
-							onInput={inputChangeHandler}
-							initialValid
-							initialValue={state.inputs.antibioticDate.value}
-						/>
-						<Input
-							type="number"
-							label="Liters Of Milk"
-							placeholder="Enter Liters (0)"
-							name="milk"
-							id="milk"
-							notRequired
-							validators={[IS_OVER(-1)]}
-							errorText="Please Input A Valid Number"
-							onInput={inputChangeHandler}
-							min="0"
-							initialValid={state.inputs.milk.isValid}
-							initialValue={state.inputs.milk.value}
-						/>
-						<ImageUpload
-							id="image"
-							onInput={inputChangeHandler}
-							initialUrl={
-								foundCow.image
-									? `${process.env.REACT_APP_BACKEND_URL}/cows/image/${foundCow.image}`
-									: placeholderImage
-							}
-						/>
+						<div className="radio-container center mb-2 mt-0-5">
+							<label htmlFor="gender">Gender</label>
+							<div className="radio-inputs">
+								<label>
+									<input
+										type="radio"
+										name="gender"
+										id="gender"
+										value="male"
+										checked={gender === 'male'}
+										onChange={genderChangeHandler}
+									/>{' '}
+									Male
+								</label>
+								<label>
+									<input
+										type="radio"
+										name="gender"
+										id="gender"
+										value="female"
+										checked={gender === 'female'}
+										onChange={genderChangeHandler}
+									/>{' '}
+									Female
+								</label>
+							</div>
+						</div>
+						{!showEditDetails && (
+							<Button
+								type="button"
+								extraClasses="mb-2 border"
+								onClick={() => setShowEditDetails(true)}
+								style={{ margin: 'auto auto 2rem auto' }}>
+								Edit Extra Details
+							</Button>
+						)}
+						{showEditDetails && (
+							<React.Fragment>
+								<Input
+									type="text"
+									label="Mother Tag"
+									placeholder="Enter Tag of Mother..."
+									name="motherTag"
+									id="motherTag"
+									validators={[MIN_LENGTH(4), MAX_LENGTH(20)]}
+									errorText="Please Input A Valid Tag"
+									onInput={inputChangeHandler}
+									initialValue={state.inputs.motherTag.value}
+									initialValid={
+										state.inputs.motherTag.isValid
+									}
+								/>
+								<Input
+									type="text"
+									label="Birth Date"
+									placeholder={`Enter Date (${getTodaysDate()})`}
+									name="birthDate"
+									id="birthDate"
+									errorText="Please Input A Valid Birth Date"
+									validators={[IS_DATE()]}
+									notRequired
+									onInput={inputChangeHandler}
+									initialValid
+									initialValue={state.inputs.birthDate.value}
+								/>
+								<Input
+									type="text"
+									label="Fertilization Date"
+									placeholder="Ente Date..."
+									name="fertDate"
+									id="fertDate"
+									validators={[IS_DATE()]}
+									notRequired
+									errorText="Please Input A Valid Date (Leave Empty For None)"
+									onInput={inputChangeHandler}
+									initialValid
+									initialValue={state.inputs.fertDate.value}
+								/>
+								<Input
+									type="text"
+									label="Antibiotic Date"
+									placeholder="Enter Date..."
+									name="antibioticDate"
+									id="antibioticDate"
+									validators={[IS_DATE()]}
+									notRequired
+									errorText="Please Input A Valid Date (Leave Empty For None)"
+									onInput={inputChangeHandler}
+									initialValid
+									initialValue={
+										state.inputs.antibioticDate.value
+									}
+								/>
+								<Input
+									type="number"
+									label="Liters Of Milk"
+									placeholder="Enter Liters (0)"
+									name="milk"
+									id="milk"
+									notRequired
+									validators={[IS_OVER(-1)]}
+									errorText="Please Input A Valid Number"
+									onInput={inputChangeHandler}
+									min="0"
+									initialValid={state.inputs.milk.isValid}
+									initialValue={state.inputs.milk.value}
+								/>
+								<ImageUpload
+									id="image"
+									onInput={inputChangeHandler}
+									initialUrl={
+										foundCow.image
+											? `${process.env.REACT_APP_BACKEND_URL}/cows/image/${foundCow.image}`
+											: placeholderImage
+									}
+								/>
+							</React.Fragment>
+						)}
 						<Button
 							type="submit"
 							block

@@ -18,7 +18,7 @@ const Login = React.lazy(() => import('./users/pages/Login'));
 const SignUp = React.lazy(() => import('./users/pages/SignUp'));
 
 function App() {
-	const [token, userId, login, logout] = useAuth();
+	const [token, userId, login, logout, isDarkMode, setIsDarkMode] = useAuth();
 
 	let routes;
 	if (token) {
@@ -62,7 +62,15 @@ function App() {
 	return (
 		<div className="App">
 			<AuthContext.Provider
-				value={{ token, login, logout, userId, isLoggedIn: !!token }}>
+				value={{
+					token,
+					login,
+					logout,
+					userId,
+					isLoggedIn: !!token,
+					isDarkMode,
+					setIsDarkMode
+				}}>
 				<Router>
 					<Suspense
 						fallback={

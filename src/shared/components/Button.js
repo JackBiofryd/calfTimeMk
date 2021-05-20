@@ -10,7 +10,8 @@ export default function Button(props) {
 					props.danger && 'btn-danger'
 				} ${props.inverse && 'btn-inverse'} ${
 					props.block && 'btn-block'
-				} ${props.extraClasses}`}>
+				} ${props.extraClasses}`}
+				style={props.style}>
 				{props.children}
 			</a>
 		);
@@ -25,7 +26,8 @@ export default function Button(props) {
 					props.danger && 'btn-danger'
 				} ${props.inverse && 'btn-inverse'} ${
 					props.block && 'btn-block'
-				} ${props.extraClasses}`}>
+				} ${props.extraClasses}`}
+				style={props.style}>
 				{props.children}
 			</Link>
 		);
@@ -40,7 +42,8 @@ export default function Button(props) {
 				props.danger && 'btn-danger'
 			} ${props.inverse && 'btn-inverse'} ${props.block && 'btn-block'} ${
 				props.extraClasses
-			} ${props.disabled && 'btn-disabled'}`}>
+			} ${props.disabled && 'btn-disabled'}`}
+			style={props.style}>
 			{props.children}
 		</button>
 	);

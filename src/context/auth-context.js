@@ -5,5 +5,6 @@ export default createContext({
 	login: () => {},
 	logout: () => {},
 	userId: '',
-	isLoggedIn: false
+	isLoggedIn: false,
+	isDarkMode: false
 });

@@ -32,6 +32,7 @@ export default function CowsList(props) {
 					checkingDates={cow.checkingDates}
 					milk={cow.milk}
 					antibioticDate={cow.antibioticDate}
+					gender={cow.gender}
 				/>
 			))}
 		</React.Fragment>

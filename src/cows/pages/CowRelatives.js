@@ -16,6 +16,9 @@ export default function CowRelatives() {
 	const auth = useContext(AuthContext);
 
 	useEffect(() => {
+		setCurrentCow(null);
+		setMother(null);
+		setChildren(null);
 		const fetchCowRelatives = async () => {
 			try {
 				const responseData = await sendRequest(
@@ -26,9 +29,9 @@ export default function CowRelatives() {
 						Authorization: `Bearer ${auth.token}`
 					}
 				);
-				setCurrentCow(responseData.currentCow);
-				setMother(responseData.mother);
 				setChildren(responseData.children);
+				setMother(responseData.mother);
+				setCurrentCow(responseData.currentCow);
 			} catch (err) {
 				console.error(err);
 			}
@@ -65,6 +68,7 @@ export default function CowRelatives() {
 								image={currentCow.image}
 								mother={currentCow.mother}
 								children={currentCow.children}
+								gender={currentCow.gender}
 								displayOnly
 							/>
 						)}
@@ -84,6 +88,7 @@ export default function CowRelatives() {
 								image={mother.image}
 								mother={mother.mother}
 								children={mother.children}
+								gender={currentCow.gender}
 								displayOnly
 							/>
 						)}
@@ -102,6 +107,7 @@ export default function CowRelatives() {
 									image={cow.image}
 									mother={cow.mother}
 									children={cow.children}
+									gender={cow.gender}
 									displayOnly
 								/>
 							))}

@@ -38,6 +38,26 @@ img {
 	width: 100%;
 }
 
+label {
+	display: block;
+}
+
+/* Handle dark mode */
+html.dark-mode {
+	filter: invert(0.9) hue-rotate(180deg);
+}
+
+html.dark-mode img,
+html.dark-mode .text-primary,
+html.dark-mode .btn-primary,
+html.dark-mode .btn {
+	filter: invert(1) hue-rotate(180deg);
+}
+
+html.dark-mode * {
+	box-shadow: none;
+}
+
 /* Utility classes */
 .container {
 	max-width: var(--max-width);
@@ -119,6 +139,9 @@ img {
 .mr-1 {
 	margin-right: 1rem;
 }
+.mt-0-5 {
+	margin-top: 0.5rem;
+}
 
 .M-heading {
 	font-size: 2rem;
@@ -163,6 +186,10 @@ img {
 	background: var(--dark-white);
 }
 
+html.dark-mode .btn:not(.btn-disabled):hover {
+	background: #444;
+}
+
 .btn-block {
 	width: 100%;
 }
@@ -182,13 +209,12 @@ img {
 	cursor: not-allowed;
 }
 
-.btn-inverse {
-	background: var(--primary-color);
-	color: var(--white);
+html.dark-mode .btn-disabled {
+	background: gray;
 }
 
-.btn-inverse:not(.btn-disabled):hover {
-	background: var(--primary-color-dark);
+.border {
+	border: 1px solid var(--primary-color);
 }
 
 .primary-line {
@@ -231,7 +257,7 @@ img {
 	width: 100%;
 	padding: 0.6rem 1rem;
 	font-size: 0.9rem;
-	border-radius: 4px;
+	border-radius: 6px;
 	display: flex;
 	align-items: center;
 }
@@ -246,10 +272,22 @@ img {
 	border: #ebccd1 1px solid;
 }
 
+html.dark-mode .alert-error {
+	background: none;
+	border: #ff0000 2px solid;
+	border-radius: 16px;
+}
+
 .alert-info {
 	color: #004085;
 	background: var(--info-color);
 	border: #b8daff 1px solid;
+}
+
+html.dark-mode .alert-info {
+	background: none;
+	border: #00f 2px solid;
+	border-radius: 16px;
 }
 
 .loader {
@@ -296,6 +334,35 @@ img {
 	}
 }
 
+.dark-mode-icon {
+	margin-left: 4rem;
+	position: absolute;
+	top: 32px;
+	right: 35px;
+	transform: scale(1.4);
+	color: var(--primary-color);
+	opacity: 0.5;
+	cursor: pointer;
+}
+
+html.dark-mode .dark-mode-icon {
+	filter: invert(1) hue-rotate(180deg);
+	opacity: 0.7;
+}
+
+.is-dark-mode::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 25px;
+	height: 3px;
+	background: var(--primary-color);
+	opacity: 1;
+	border-radius: 2px;
+	transform: translateX(-53%) translateY(-50%) rotate(45deg);
+}
+
 /* Lading Page: Navbar */
 .main-navbar {
 	background: var(--white);
@@ -335,10 +402,19 @@ img {
 .landing-image-container {
 	width: 100%;
 	height: 100vh;
-	background: #fff url('./shared/images/barn.jpg') no-repeat center
-		center/cover;
 	position: relative;
 	text-align: center;
+}
+
+.landing-image {
+	width: 100%;
+	height: 100%;
+	background: #fff url('./shared/images/barn.jpg') no-repeat center
+		center/cover;
+}
+
+html.dark-mode .landing-image {
+	filter: invert(1) hue-rotate(180deg);
 }
 
 .landing-image-container::after {
@@ -389,6 +465,9 @@ img {
 	box-shadow: 0px 0px 10px rgba(200, 200, 200, 0.9);
 }
 
+html.dark-mode .main-navbar {
+	border-bottom: 1px solid rgba(150, 150, 150, 0.8);
+}
 .main-navbar,
 .landing-footer,
 .landing-text {
@@ -477,6 +556,18 @@ img {
 	box-shadow: 0px 0px 3px #888888;
 }
 
+.cow-item-image {
+	position: relative;
+}
+
+.cow-item-spacing {
+	border-left: 4px solid #56c7d1;
+}
+
+.cow-item-spacing.female {
+	border-left: 4px solid #e27f90;
+}
+
 .cow-item p {
 	font-size: 1.1rem;
 }
@@ -517,9 +608,34 @@ img {
 	border-radius: 5px;
 }
 
+html.dark-mode .form {
+	box-shadow: none;
+	border: 2px solid rgba(200, 200, 200, 0.8);
+	border-radius: 20px;
+}
+
 .form .cow-img {
 	margin: auto;
 	margin-bottom: -2rem;
+}
+
+.radio-container label {
+	font-size: 1.4rem;
+	margin-bottom: 1rem;
+}
+
+.radio-inputs input {
+	cursor: pointer;
+}
+
+.radio-inputs > label {
+	display: inline;
+	font-size: 1.1rem;
+	cursor: pointer;
+}
+
+.radio-inputs > label:last-child {
+	margin-left: 4rem;
 }
 
 /* RESPONSIVE DESIGN */
@@ -553,6 +669,14 @@ img {
 	.cow-item-spacing {
 		display: none;
 	}
+	.cow-item-spacing + .cow-item-image {
+		border-bottom: 4px solid #56c7d1;
+	}
+
+	.cow-item-spacing.female + .cow-item-image {
+		border-bottom: 4px solid #e27f90;
+	}
+
 	.cow-item-image > img {
 		width: 100%;
 		height: auto;
@@ -595,5 +719,11 @@ img {
 	}
 	.cow-img {
 		width: 170px;
+	}
+
+	.dark-mode-icon {
+		top: 70px;
+		right: 30px;
+		transform: scale(1.1);
 	}
 }

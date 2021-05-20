@@ -9,7 +9,7 @@ export default function CowItem(props) {
 			className={`cow-item ${props.displayOnly ? 'my-3' : 'my-4'} mx-1 ${
 				cowIsDue(props.dueOn) && 'cow-due'
 			}`}>
-			<div className="cow-item-spacing"></div>
+			<div className={`cow-item-spacing ${props.gender}`}></div>
 			<div className="cow-item-image">
 				<img
 					src={
@@ -31,9 +31,11 @@ export default function CowItem(props) {
 					<p>
 						<strong>Born On:</strong> {props.bornOn}
 					</p>
-					<p>
-						<strong>Liters Of Milk:</strong> {props.milk}
-					</p>
+					{props.gender === 'female' && (
+						<p>
+							<strong>Liters Of Milk:</strong> {props.milk}
+						</p>
+					)}
 					<p>
 						<strong>Antibiotic Date:</strong> {props.antibioticDate}
 					</p>

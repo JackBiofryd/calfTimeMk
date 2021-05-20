@@ -65,7 +65,7 @@ export default function SignUp() {
 			{!isLoading && (
 				<div className="container p-1">
 					<form
-						className="form my-4 p-2"
+						className="form my-3 p-2"
 						onSubmit={formSubmitHandler}>
 						<h1 className="center L-heading mb-1">
 							Sign <span className="text-primary">Up</span>

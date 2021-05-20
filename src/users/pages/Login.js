@@ -56,7 +56,7 @@ export default function Login() {
 			{!isLoading && (
 				<div className="container p-1">
 					<form
-						className="form my-4 p-2"
+						className="form my-3 p-2"
 						onSubmit={formSubmitHandler}>
 						<h1 className="center L-heading mb-1">
 							Log<span className="text-primary">in</span>
