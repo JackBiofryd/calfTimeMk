@@ -14,7 +14,11 @@ import {
 	IS_OVER,
 	MAX_LENGTH
 } from '../../utils/validators';
-import { getTodaysDate, toFormatedDate } from '../../utils/dates';
+import {
+	getCheckingDate,
+	getTodaysDate,
+	toFormatedDate
+} from '../../utils/dates';
 import Alert from '../../shared/components/Alert';
 import AuthContext from '../../context/auth-context';
 import ImageUpload from '../../shared/components/ImageUpload';
@@ -140,7 +144,8 @@ export default function EditCow() {
 			fertDate: toFormatedDate(state.inputs.fertDate.value),
 			antibioticDate: toFormatedDate(state.inputs.antibioticDate.value),
 			milk: state.inputs.milk.value || 0,
-			gender
+			gender,
+			checkingDates: getCheckingDate(state.inputs.fertDate.value)
 		};
 
 		try {
@@ -169,7 +174,7 @@ export default function EditCow() {
 			<Navbar />
 			{isLoading && <Loading />}
 			{!foundCow && !isLoading && (
-				<h1 className="center my-2">No Cow Found.</h1>
+				<h1 className="center my-2">Не е пронајдено крава.</h1>
 			)}
 			{foundCow && !isLoading && (
 				<div className="container p-1">
@@ -177,35 +182,35 @@ export default function EditCow() {
 						className="form my-3 p-2"
 						onSubmit={formSubmitHandler}>
 						<h1 className="center L-heading mb-1">
-							Edit <span className="text-primary">Cow</span>
+							Едитирај <span className="text-primary">Крава</span>
 						</h1>
 						{error && <Alert message={error} type="error" />}
 						<Input
 							type="text"
-							label="Tag"
-							placeholder="Enter Tag..."
+							label="Маркица"
+							placeholder="Внеси Маркица..."
 							name="tag"
 							id="tag"
 							validators={[MIN_LENGTH(4), MAX_LENGTH(20)]}
-							errorText="Please Input A Valid Tag"
+							errorText="Ве молиме внесете правилна маркица"
 							onInput={inputChangeHandler}
 							initialValue={state.inputs.tag.value}
 							initialValid={state.inputs.tag.isValid}
 						/>
 						<Input
 							type="text"
-							label="Name"
-							placeholder="Enter Name..."
+							label="Име"
+							placeholder="Внеси Име..."
 							name="name"
 							id="name"
 							validators={[REQUIRED(), MAX_LENGTH(20)]}
-							errorText="Please Input A Valid Name"
+							errorText="Ве молиме внесете правилно име"
 							onInput={inputChangeHandler}
 							initialValue={state.inputs.name.value}
 							initialValid={state.inputs.name.isValid}
 						/>
 						<div className="radio-container center mb-2 mt-0-5">
-							<label htmlFor="gender">Gender</label>
+							<label htmlFor="gender">Пол</label>
 							<div className="radio-inputs">
 								<label>
 									<input
@@ -216,7 +221,7 @@ export default function EditCow() {
 										checked={gender === 'male'}
 										onChange={genderChangeHandler}
 									/>{' '}
-									Male
+									Маж
 								</label>
 								<label>
 									<input
@@ -227,7 +232,7 @@ export default function EditCow() {
 										checked={gender === 'female'}
 										onChange={genderChangeHandler}
 									/>{' '}
-									Female
+									Жена
 								</label>
 							</div>
 						</div>
@@ -237,19 +242,19 @@ export default function EditCow() {
 								extraClasses="mb-2 border"
 								onClick={() => setShowEditDetails(true)}
 								style={{ margin: 'auto auto 2rem auto' }}>
-								Edit Extra Details
+								Едитирај Детали
 							</Button>
 						)}
 						{showEditDetails && (
 							<React.Fragment>
 								<Input
 									type="text"
-									label="Mother Tag"
-									placeholder="Enter Tag of Mother..."
+									label="Маркица на Мајка"
+									placeholder="Внеси Маркица..."
 									name="motherTag"
 									id="motherTag"
 									validators={[MIN_LENGTH(4), MAX_LENGTH(20)]}
-									errorText="Please Input A Valid Tag"
+									errorText="Ве молиме внесете правилна маркица"
 									onInput={inputChangeHandler}
 									initialValue={state.inputs.motherTag.value}
 									initialValid={
@@ -258,11 +263,11 @@ export default function EditCow() {
 								/>
 								<Input
 									type="text"
-									label="Birth Date"
-									placeholder={`Enter Date (${getTodaysDate()})`}
+									label="Дата на Раѓање"
+									placeholder={`Внеси дата (${getTodaysDate()})`}
 									name="birthDate"
 									id="birthDate"
-									errorText="Please Input A Valid Birth Date"
+									errorText="Ве молиме внесете правилна дата"
 									validators={[IS_DATE()]}
 									notRequired
 									onInput={inputChangeHandler}
@@ -272,13 +277,13 @@ export default function EditCow() {
 								{gender === 'female' && (
 									<Input
 										type="text"
-										label="Fertilization Date"
-										placeholder="Ente Date..."
+										label="Дата на оплодување"
+										placeholder="Внеси Дата..."
 										name="fertDate"
 										id="fertDate"
 										validators={[IS_DATE()]}
 										notRequired
-										errorText="Please Input A Valid Date (Leave Empty For None)"
+										errorText="Ве молиме внесете правилна дата"
 										onInput={inputChangeHandler}
 										initialValid
 										initialValue={
@@ -288,13 +293,13 @@ export default function EditCow() {
 								)}
 								<Input
 									type="text"
-									label="Antibiotic Date"
-									placeholder="Enter Date..."
+									label="Дата на Антибиотик"
+									placeholder="Внеси Дата..."
 									name="antibioticDate"
 									id="antibioticDate"
 									validators={[IS_DATE()]}
 									notRequired
-									errorText="Please Input A Valid Date (Leave Empty For None)"
+									errorText="Ве молиме внесете правилна дата"
 									onInput={inputChangeHandler}
 									initialValid
 									initialValue={
@@ -304,13 +309,13 @@ export default function EditCow() {
 								{gender === 'female' && (
 									<Input
 										type="number"
-										label="Liters Of Milk"
-										placeholder="Enter Liters (0)"
+										label="Литри Млеко"
+										placeholder="Внеси Литри (0)"
 										name="milk"
 										id="milk"
 										notRequired
 										validators={[IS_OVER(-1)]}
-										errorText="Please Input A Valid Number"
+										errorText="Ве молиме внесете правилен број"
 										onInput={inputChangeHandler}
 										min="0"
 										initialValid={state.inputs.milk.isValid}
@@ -334,7 +339,7 @@ export default function EditCow() {
 							disabled={!state.isFormValid}
 							color="primary"
 							extraClasses="my-1">
-							Edit Cow
+							Едитирај Крава
 						</Button>
 						<img
 							src={cowImage}

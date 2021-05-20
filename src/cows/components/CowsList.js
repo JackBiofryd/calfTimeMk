@@ -6,9 +6,9 @@ export default function CowsList(props) {
 	if (!props.cows || props.cows?.length === 0) {
 		return (
 			<div className="center my-4">
-				<h1 className="mb-1">No Cows Found.</h1>
+				<h1 className="mb-1">Не се пронајдени крави.</h1>
 				<Button to="/cows/new" inverse>
-					Add Cow
+					Додај крава
 				</Button>
 			</div>
 		);

@@ -10,12 +10,14 @@ export default function LandingMain() {
 			<div className="landing-image"></div>
 			<div className="landing-text">
 				<h2 className="XL-heading">
-					Farmers <span className="text-primary">Galore</span>
+					Богатство за <span className="text-primary">Фармери</span>
 				</h2>
-				<p className="lead bold mb-0-5">Keep your farm on track!</p>
+				<p className="lead bold mb-0-5">
+					Држете ја вашата фарма под контрола!
+				</p>
 				{!auth.isLoggedIn && (
 					<Button to="/signup" color="primary" extraClasses="my-1">
-						Get Started!
+						Започнете
 					</Button>
 				)}
 			</div>

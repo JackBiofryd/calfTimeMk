@@ -68,37 +68,37 @@ export default function SignUp() {
 						className="form my-3 p-2"
 						onSubmit={formSubmitHandler}>
 						<h1 className="center L-heading mb-1">
-							Sign <span className="text-primary">Up</span>
+							Регистрирај <span className="text-primary">Се</span>
 						</h1>
 						{error && <Alert message={error} type="error" />}
 						<Input
 							type="name"
-							label="Name"
-							placeholder="Enter Name..."
+							label="Име"
+							placeholder="Внеси Име..."
 							name="name"
 							id="name"
 							validators={[REQUIRED(), MAX_LENGTH(40)]}
-							errorText="Please Input A Valid Name"
+							errorText="Ве молиме внесете име"
 							onInput={inputChangeHandler}
 						/>
 						<Input
 							type="email"
-							label="Email"
-							placeholder="Enter Email..."
+							label="Е-маил"
+							placeholder="Внеси Е-маил..."
 							name="email"
 							id="email"
 							validators={[IS_EMAIL(), MAX_LENGTH(50)]}
-							errorText="Please Input A Valid Email"
+							errorText="Ве молиме внесете правилен е-маил"
 							onInput={inputChangeHandler}
 						/>
 						<Input
 							type="password"
-							label="Password"
-							placeholder="Enter Password..."
+							label="Лозика"
+							placeholder="Внеси Лозика..."
 							name="password"
 							id="password"
 							validators={[MIN_LENGTH(6), MAX_LENGTH(300)]}
-							errorText="Please Input A Valid Password (At least 6 characters)"
+							errorText="Ве молиме внесете правилна лозика (над 6 карактери)"
 							onInput={inputChangeHandler}
 						/>
 						<Button
@@ -107,7 +107,7 @@ export default function SignUp() {
 							disabled={!state.isFormValid}
 							color="primary"
 							extraClasses="my-1">
-							Sign Up
+							Регистрирај Се
 						</Button>
 						<img
 							src={cowImage}

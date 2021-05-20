@@ -92,7 +92,7 @@ export default function UserCows() {
 						<div className="btn-container my-2">
 							<input
 								type="text"
-								placeholder="Search By Tag or Name..."
+								placeholder="Барај по име или маркица..."
 								className="input my-0-5 mx-1-5"
 								onChange={e => filterCows(e)}
 							/>
@@ -104,13 +104,13 @@ export default function UserCows() {
 					{cows && (dueNum !== 0 || checkingNum !== 0) && (
 						<div className="container px-1">
 							<Alert
-								message={`There ${
+								message={`Има ${
 									dueNum === 1
-										? `is ${dueNum} cow`
-										: `are ${dueNum} cows`
-								} soon due and ${checkingNum} ${
-									checkingNum === 1 ? 'cow' : 'cows'
-								} should be checked`}
+										? ` ${dueNum} крава`
+										: ` ${dueNum} крави`
+								} за пораѓање и ${checkingNum} ${
+									checkingNum === 1 ? 'крава' : 'крави'
+								} за проверка`}
 								type="info"
 							/>
 						</div>

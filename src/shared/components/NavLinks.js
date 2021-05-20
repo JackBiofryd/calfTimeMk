@@ -11,21 +11,21 @@ export default function NavLinks() {
 				{auth.isLoggedIn && (
 					<React.Fragment>
 						<li>
-							<Button to="/cows">COWS</Button>
+							<Button to="/cows">КРАВИ</Button>
 						</li>
 						<li>
-							<Button onClick={auth.logout}>LOGOUT</Button>
+							<Button onClick={auth.logout}>ОДЈАВИ СЕ</Button>
 						</li>
 					</React.Fragment>
 				)}
 				{!auth.isLoggedIn && (
 					<li>
-						<Button to="/login">LOGIN</Button>
+						<Button to="/login">ЛОГИРАЈ СЕ</Button>
 					</li>
 				)}
 				{!auth.isLoggedIn && (
 					<li>
-						<Button to="/signup">SIGN UP</Button>
+						<Button to="/signup">РЕГИСТРИРАЈ СЕ</Button>
 					</li>
 				)}
 			</ul>

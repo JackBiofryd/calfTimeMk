@@ -117,31 +117,31 @@ export default function AddCow() {
 						className="form my-3 p-2"
 						onSubmit={formSubmitHandler}>
 						<h1 className="center L-heading mb-1">
-							Add <span className="text-primary">Cow</span>
+							Додај <span className="text-primary">Крава</span>
 						</h1>
 						{error && <Alert message={error} type="error" />}
 						<Input
 							type="text"
-							label="Tag"
-							placeholder="Enter Tag..."
+							label="Маркица"
+							placeholder="Внеси Маркица..."
 							name="tag"
 							id="tag"
 							validators={[MIN_LENGTH(4), MAX_LENGTH(20)]}
-							errorText="Please Input A Valid Tag"
+							errorText="Ве молиме внесете правилна маркица"
 							onInput={inputChangeHandler}
 						/>
 						<Input
 							type="text"
-							label="Name"
-							placeholder="Enter Name..."
+							label="Име"
+							placeholder="Внеси Име..."
 							name="name"
 							id="name"
 							validators={[REQUIRED(), MAX_LENGTH(20)]}
-							errorText="Please Input A Valid Name"
+							errorText="Ве молиме внесете правилно име"
 							onInput={inputChangeHandler}
 						/>
 						<div className="radio-container center mb-2 mt-0-5">
-							<label htmlFor="gender">Gender</label>
+							<label htmlFor="gender">Пол</label>
 							<div className="radio-inputs">
 								<label>
 									<input
@@ -152,7 +152,7 @@ export default function AddCow() {
 										checked={gender === 'male'}
 										onChange={genderChangeHandler}
 									/>{' '}
-									Male
+									Маж
 								</label>
 								<label>
 									<input
@@ -163,40 +163,40 @@ export default function AddCow() {
 										checked={gender === 'female'}
 										onChange={genderChangeHandler}
 									/>{' '}
-									Female
+									Жена
 								</label>
 							</div>
 						</div>
 						{!showAddDetails && (
 							<Button
 								type="button"
-								extraClasses="mb-2"
+								extraClasses="mb-2 border"
 								onClick={() => setShowAddDetails(true)}
 								style={{ margin: 'auto auto 2rem auto' }}>
-								Add Extra Details
+								Додај детали
 							</Button>
 						)}
 						{showAddDetails && (
 							<React.Fragment>
 								<Input
 									type="text"
-									label="Mother Tag"
-									placeholder="Enter Tag of Mother..."
+									label="Маркица на Мајка"
+									placeholder="Внеси Маркица..."
 									name="motherTag"
 									id="motherTag"
 									validators={[MIN_LENGTH(4), MAX_LENGTH(20)]}
-									errorText="Please Input A Valid Tag"
+									errorText="Ве молиме внесете правилна маркица"
 									notRequired
 									onInput={inputChangeHandler}
 									initialValid
 								/>
 								<Input
 									type="text"
-									label="Birth Date"
-									placeholder={`Enter Date (${getTodaysDate()})`}
+									label="Дата на Раѓање"
+									placeholder={`Внеси Дата (${getTodaysDate()})`}
 									name="birthDate"
 									id="birthDate"
-									errorText="Please Input A Valid Birth Date"
+									errorText="Ве молиме внесете правилна дата"
 									validators={[IS_DATE()]}
 									notRequired
 									onInput={inputChangeHandler}
@@ -205,39 +205,39 @@ export default function AddCow() {
 								{gender === 'female' && (
 									<Input
 										type="text"
-										label="Fertilization Date"
-										placeholder="Enter Date..."
+										label="Дата на Оплодување"
+										placeholder="Внеси Дата..."
 										name="fertDate"
 										id="fertDate"
 										validators={[IS_DATE()]}
 										notRequired
-										errorText="Please Input A Valid Fertilization Date (Leave Empty For None)"
+										errorText="Ве молиме внесете правилна дата"
 										onInput={inputChangeHandler}
 										initialValid
 									/>
 								)}
 								<Input
 									type="text"
-									label="Antibiotic Date"
-									placeholder="Enter Date ..."
+									label="Дата на антибиотик"
+									placeholder="Внеси Дата..."
 									name="antibioticDate"
 									id="antibioticDate"
 									validators={[IS_DATE()]}
 									notRequired
-									errorText="Please Input A Valid Date (Leave Empty For None)"
+									errorText="Ве молиме внесете правилна дата"
 									onInput={inputChangeHandler}
 									initialValid
 								/>
 								{gender === 'female' && (
 									<Input
 										type="number"
-										label="Liters Of Milk"
-										placeholder="Enter Liters (0)"
+										label="Литри млеко"
+										placeholder="Внесете Литри Млеко (0)"
 										name="milk"
 										id="milk"
 										notRequired
 										validators={[IS_OVER(-1)]}
-										errorText="Please Input A Valid Number"
+										errorText="Ве молиме внесете правилен број"
 										onInput={inputChangeHandler}
 										min="0"
 										initialValid
@@ -255,7 +255,7 @@ export default function AddCow() {
 							disabled={!state.isFormValid}
 							color="primary"
 							extraClasses="my-1">
-							Add Cow
+							Додај Крава
 						</Button>
 						<img
 							src={cowImage}

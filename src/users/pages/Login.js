@@ -59,27 +59,27 @@ export default function Login() {
 						className="form my-3 p-2"
 						onSubmit={formSubmitHandler}>
 						<h1 className="center L-heading mb-1">
-							Log<span className="text-primary">in</span>
+							Лоригај <span className="text-primary">Се</span>
 						</h1>
 						{error && <Alert message={error} type="error" />}
 						<Input
 							type="email"
-							label="Email"
-							placeholder="Enter Email..."
+							label="Е-маил"
+							placeholder="Внеси Е-маил..."
 							name="email"
 							id="email"
 							validators={[IS_EMAIL(), MAX_LENGTH(50)]}
-							errorText="Please Input A Valid Email"
+							errorText="Ве молиме внесете правилен е-маил"
 							onInput={inputChangeHandler}
 						/>
 						<Input
 							type="password"
-							label="Password"
-							placeholder="Enter Password..."
+							label="Лозинка"
+							placeholder="Внеси Лозинка..."
 							name="password"
 							id="password"
 							validators={[MIN_LENGTH(6), MAX_LENGTH(300)]}
-							errorText="Please Input A Valid Password (At least 6 characters)"
+							errorText="Ве молиме внесете правилна лозика (над 6 карактери)"
 							onInput={inputChangeHandler}
 						/>
 						<Button
@@ -88,7 +88,7 @@ export default function Login() {
 							disabled={!state.isFormValid}
 							color="primary"
 							extraClasses="my-1">
-							Login
+							Лоригај Се
 						</Button>
 						<img
 							src={cowImage}

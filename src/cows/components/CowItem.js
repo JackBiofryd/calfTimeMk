@@ -23,28 +23,29 @@ export default function CowItem(props) {
 			<div className="cow-item-info p-1">
 				<div className="cow-item-all">
 					<p>
-						<strong>Tag:</strong> {props.tag}
+						<strong>Маркица:</strong> {props.tag}
 					</p>
 					<p className="mb-1">
-						<strong>Name:</strong> {props.name}
+						<strong>Име:</strong> {props.name}
 					</p>
 					<p>
-						<strong>Born On:</strong> {props.bornOn}
+						<strong>Родена на:</strong> {props.bornOn}
 					</p>
 					{props.gender === 'female' && (
 						<p>
-							<strong>Liters Of Milk:</strong> {props.milk}
+							<strong>Литри млеко: </strong> {props.milk}
 						</p>
 					)}
 					<p>
-						<strong>Antibiotic Date:</strong> {props.antibioticDate}
+						<strong>Дата на антибиотик:</strong>{' '}
+						{props.antibioticDate}
 					</p>
 					<p>
-						<strong>Mother & Children:</strong>{' '}
+						<strong>Мајка и Деца:</strong>{' '}
 						<Link
 							to={`/cows/relatives/${props.id}`}
 							className="text-primary">
-							View Relatives
+							Види роднини
 						</Link>
 					</p>
 				</div>
@@ -53,11 +54,11 @@ export default function CowItem(props) {
 						{props.fertDate && (
 							<React.Fragment>
 								<p className="my-0-5">
-									<strong>Fertalization Date:</strong>{' '}
+									<strong>Дата на оплодување:</strong>{' '}
 									{props.fertDate}
 								</p>
 								<p>
-									<strong>Due On:</strong>{' '}
+									<strong>Дата за пораѓање:</strong>{' '}
 									<span
 										className={
 											cowIsDue(props.dueOn)
@@ -71,7 +72,7 @@ export default function CowItem(props) {
 									</span>
 								</p>
 								<p>
-									<strong>Checking Dates: </strong>{' '}
+									<strong>Дати за проверка: </strong>{' '}
 									{props.checkingDates && (
 										<span
 											className={

@@ -52,9 +52,9 @@ export default function CowRelatives() {
 			{!isLoading && !error && (
 				<div className="container my-4 center">
 					<div className="mx-1">
-						<h1>Current Cow: </h1>
+						<h1>Крава: </h1>
 						{!currentCow && (
-							<p className="lead mb-2">No cow found.</p>
+							<p className="lead mb-2">Не е пронајдена крава.</p>
 						)}
 						{currentCow && (
 							<CowItem
@@ -72,9 +72,9 @@ export default function CowRelatives() {
 								displayOnly
 							/>
 						)}
-						<h1>Mother: {currentCow && currentCow.mother}</h1>
+						<h1>Majka: {currentCow && currentCow.mother}</h1>
 						{!mother && (
-							<p className="lead mb-2">No mother cow found.</p>
+							<p className="lead mb-2">Не е пројандено мајка.</p>
 						)}
 						{mother && (
 							<CowItem
@@ -92,7 +92,7 @@ export default function CowRelatives() {
 								displayOnly
 							/>
 						)}
-						<h1>Children: {children && children.length}</h1>
+						<h1>Деца: {children && children.length}</h1>
 						{children &&
 							children.length !== 0 &&
 							children.map(cow => (

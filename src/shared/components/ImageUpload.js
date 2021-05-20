@@ -70,10 +70,12 @@ export default function ImageUpload(props) {
 					type="button"
 					onClick={pickImageHandler}
 					extraClasses="border">
-					Upload Cow Image
+					Додај Слика
 				</Button>
 			</div>
-			{fileTooBig && file && <p className="error">Image too big.</p>}
+			{fileTooBig && file && (
+				<p className="error">Сликата е над дозволената големина.</p>
+			)}
 		</div>
 	);
 }
