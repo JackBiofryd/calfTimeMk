@@ -202,18 +202,20 @@ export default function AddCow() {
 									onInput={inputChangeHandler}
 									initialValid
 								/>
-								<Input
-									type="text"
-									label="Fertilization Date"
-									placeholder="Enter Date..."
-									name="fertDate"
-									id="fertDate"
-									validators={[IS_DATE()]}
-									notRequired
-									errorText="Please Input A Valid Fertilization Date (Leave Empty For None)"
-									onInput={inputChangeHandler}
-									initialValid
-								/>
+								{gender === 'female' && (
+									<Input
+										type="text"
+										label="Fertilization Date"
+										placeholder="Enter Date..."
+										name="fertDate"
+										id="fertDate"
+										validators={[IS_DATE()]}
+										notRequired
+										errorText="Please Input A Valid Fertilization Date (Leave Empty For None)"
+										onInput={inputChangeHandler}
+										initialValid
+									/>
+								)}
 								<Input
 									type="text"
 									label="Antibiotic Date"
@@ -226,19 +228,21 @@ export default function AddCow() {
 									onInput={inputChangeHandler}
 									initialValid
 								/>
-								<Input
-									type="number"
-									label="Liters Of Milk"
-									placeholder="Enter Liters (0)"
-									name="milk"
-									id="milk"
-									notRequired
-									validators={[IS_OVER(-1)]}
-									errorText="Please Input A Valid Number"
-									onInput={inputChangeHandler}
-									min="0"
-									initialValid
-								/>
+								{gender === 'female' && (
+									<Input
+										type="number"
+										label="Liters Of Milk"
+										placeholder="Enter Liters (0)"
+										name="milk"
+										id="milk"
+										notRequired
+										validators={[IS_OVER(-1)]}
+										errorText="Please Input A Valid Number"
+										onInput={inputChangeHandler}
+										min="0"
+										initialValid
+									/>
+								)}
 								<ImageUpload
 									id="image"
 									onInput={inputChangeHandler}

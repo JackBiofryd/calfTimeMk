@@ -48,52 +48,55 @@ export default function CowItem(props) {
 						</Link>
 					</p>
 				</div>
-				<div className="cow-item-dates">
-					{props.fertDate && (
-						<React.Fragment>
-							<p className="my-0-5">
-								<strong>Fertalization Date:</strong>{' '}
-								{props.fertDate}
-							</p>
-							<p>
-								<strong>Due On:</strong>{' '}
-								<span
-									className={
-										cowIsDue(props.dueOn)
-											? 'text-danger'
-											: undefined
-									}>
-									{cowIsDue(props.dueOn) && (
-										<i className="fas fa-exclamation-triangle mx-0-5"></i>
-									)}
-									{props.dueOn}
-								</span>
-							</p>
-							<p>
-								<strong>Checking Dates: </strong>{' '}
-								{props.checkingDates && (
+				{props.gender === 'female' && (
+					<div className="cow-item-dates">
+						{props.fertDate && (
+							<React.Fragment>
+								<p className="my-0-5">
+									<strong>Fertalization Date:</strong>{' '}
+									{props.fertDate}
+								</p>
+								<p>
+									<strong>Due On:</strong>{' '}
 									<span
 										className={
-											cowShouldBeChecked(
-												props.checkingDates.startDate,
-												props.checkingDates.endDate
-											)
-												? 'text-warning'
+											cowIsDue(props.dueOn)
+												? 'text-danger'
 												: undefined
 										}>
-										{cowShouldBeChecked(
-											props.checkingDates.startDate,
-											props.checkingDates.endDate
-										) && (
+										{cowIsDue(props.dueOn) && (
 											<i className="fas fa-exclamation-triangle mx-0-5"></i>
 										)}
-										{`${props.checkingDates.startDate} - ${props.checkingDates.endDate}`}
+										{props.dueOn}
 									</span>
-								)}
-							</p>
-						</React.Fragment>
-					)}
-				</div>
+								</p>
+								<p>
+									<strong>Checking Dates: </strong>{' '}
+									{props.checkingDates && (
+										<span
+											className={
+												cowShouldBeChecked(
+													props.checkingDates
+														.startDate,
+													props.checkingDates.endDate
+												)
+													? 'text-warning'
+													: undefined
+											}>
+											{cowShouldBeChecked(
+												props.checkingDates.startDate,
+												props.checkingDates.endDate
+											) && (
+												<i className="fas fa-exclamation-triangle mx-0-5"></i>
+											)}
+											{`${props.checkingDates.startDate} - ${props.checkingDates.endDate}`}
+										</span>
+									)}
+								</p>
+							</React.Fragment>
+						)}
+					</div>
+				)}
 
 				{!props.displayOnly && (
 					<div className="cow-item-buttons">

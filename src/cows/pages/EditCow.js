@@ -269,19 +269,23 @@ export default function EditCow() {
 									initialValid
 									initialValue={state.inputs.birthDate.value}
 								/>
-								<Input
-									type="text"
-									label="Fertilization Date"
-									placeholder="Ente Date..."
-									name="fertDate"
-									id="fertDate"
-									validators={[IS_DATE()]}
-									notRequired
-									errorText="Please Input A Valid Date (Leave Empty For None)"
-									onInput={inputChangeHandler}
-									initialValid
-									initialValue={state.inputs.fertDate.value}
-								/>
+								{gender === 'female' && (
+									<Input
+										type="text"
+										label="Fertilization Date"
+										placeholder="Ente Date..."
+										name="fertDate"
+										id="fertDate"
+										validators={[IS_DATE()]}
+										notRequired
+										errorText="Please Input A Valid Date (Leave Empty For None)"
+										onInput={inputChangeHandler}
+										initialValid
+										initialValue={
+											state.inputs.fertDate.value
+										}
+									/>
+								)}
 								<Input
 									type="text"
 									label="Antibiotic Date"
@@ -297,20 +301,22 @@ export default function EditCow() {
 										state.inputs.antibioticDate.value
 									}
 								/>
-								<Input
-									type="number"
-									label="Liters Of Milk"
-									placeholder="Enter Liters (0)"
-									name="milk"
-									id="milk"
-									notRequired
-									validators={[IS_OVER(-1)]}
-									errorText="Please Input A Valid Number"
-									onInput={inputChangeHandler}
-									min="0"
-									initialValid={state.inputs.milk.isValid}
-									initialValue={state.inputs.milk.value}
-								/>
+								{gender === 'female' && (
+									<Input
+										type="number"
+										label="Liters Of Milk"
+										placeholder="Enter Liters (0)"
+										name="milk"
+										id="milk"
+										notRequired
+										validators={[IS_OVER(-1)]}
+										errorText="Please Input A Valid Number"
+										onInput={inputChangeHandler}
+										min="0"
+										initialValid={state.inputs.milk.isValid}
+										initialValue={state.inputs.milk.value}
+									/>
+								)}
 								<ImageUpload
 									id="image"
 									onInput={inputChangeHandler}
