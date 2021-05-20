@@ -69,6 +69,7 @@ export default function CowRelatives() {
 								mother={currentCow.mother}
 								children={currentCow.children}
 								gender={currentCow.gender}
+								checkingDates={currentCow.checkingDates}
 								displayOnly
 							/>
 						)}
@@ -89,6 +90,7 @@ export default function CowRelatives() {
 								mother={mother.mother}
 								children={mother.children}
 								gender={mother.gender}
+								checkingDates={mother.checkingDates}
 								displayOnly
 							/>
 						)}
@@ -108,6 +110,7 @@ export default function CowRelatives() {
 									mother={cow.mother}
 									children={cow.children}
 									gender={cow.gender}
+									checkingDates={cow.checkingDates}
 									displayOnly
 								/>
 							))}
