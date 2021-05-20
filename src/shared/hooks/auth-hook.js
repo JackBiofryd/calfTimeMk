@@ -5,7 +5,7 @@ export const useAuth = () => {
 	const [userId, setUserId] = useState('');
 	const [isDarkMode, setIsDarkMode] = useState(false);
 
-	const login = useCallback((uId, token, expirationDate) => {
+	const login = useCallback((uId, token) => {
 		setUserId(uId);
 		setToken(token);
 
