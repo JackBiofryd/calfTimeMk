@@ -221,7 +221,7 @@ export default function EditCow() {
 										checked={gender === 'male'}
 										onChange={genderChangeHandler}
 									/>{' '}
-									Маж
+									Машко
 								</label>
 								<label>
 									<input
@@ -232,7 +232,7 @@ export default function EditCow() {
 										checked={gender === 'female'}
 										onChange={genderChangeHandler}
 									/>{' '}
-									Жена
+									Женско
 								</label>
 							</div>
 						</div>

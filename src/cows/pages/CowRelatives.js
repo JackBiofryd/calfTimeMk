@@ -88,7 +88,7 @@ export default function CowRelatives() {
 								image={mother.image}
 								mother={mother.mother}
 								children={mother.children}
-								gender={currentCow.gender}
+								gender={mother.gender}
 								displayOnly
 							/>
 						)}

@@ -398,6 +398,10 @@ html.dark-mode .dark-mode-icon {
 	margin-right: 0.5rem;
 }
 
+.nav-links > li:last-child {
+	margin-right: 3rem;
+}
+
 /* Landing Page: Image + Overlay + Text */
 .landing-image-container {
 	width: 100%;
@@ -642,6 +646,10 @@ html.dark-mode .form {
 @media (max-width: 767px) {
 	.cow-img {
 		width: 250px;
+	}
+
+	.nav-links > li:last-child {
+		margin-right: 0;
 	}
 
 	.main-navbar .container {
